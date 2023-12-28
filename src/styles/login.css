@@ -1,0 +1,32 @@
+.login-title{
+    text-align: center;
+    font-size: 5vh;
+    border: red 1px solid;
+}
+
+.login-frame{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: red 1px solid;
+}
+
+.username-frame{
+    width: 100%;
+    margin: 1vh;
+    border: red 1px solid;
+}
+
+.password-frame{
+    width: 100%;
+    margin: 1vh;
+    border: red 1px solid;
+}
+
+.btn-login{
+    background-color: rgb(78, 137, 19);
+    color: whitesmoke;
+    font-size: 3vh;
+    border: 1px solid red;
+    border-radius: 4px;
+}
