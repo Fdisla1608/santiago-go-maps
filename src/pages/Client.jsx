@@ -79,10 +79,7 @@ const Client = () => {
           defaultZoom={19}
         >
           <MyPositionMarker lat={19.441907556432835} lng={-70.6815231746255} text={"^"} />
-          <PolyLine
-                map={map}
-                path={POLYLINE_PATH}
-            />
+
         </GoogleMapReact>
       </div>
     </div>
