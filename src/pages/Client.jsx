@@ -11,8 +11,8 @@ const Client = () => {
   const location = useLocation();
   const [user, setUser] = useState();
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const [lat, setLat] = useState(40.330982);
-  const [lgn, setLgn] = useState(-75.9261621);
+  const [lat, setLat] = useState(19.441907556432835);
+  const [lgn, setLgn] = useState(-70.6815231746255);
 
   const CloseNavbar = () => {
     setNavbarOpen(!navbarOpen);
@@ -78,7 +78,11 @@ const Client = () => {
           }}
           defaultZoom={19}
         >
-          <MyPositionMarker lat={40.330982} lng={-75.9261621} text={"^"} />
+          <MyPositionMarker lat={19.441907556432835} lng={-70.6815231746255} text={"^"} />
+          <PolyLine
+                map={map}
+                path={POLYLINE_PATH}
+            />
         </GoogleMapReact>
       </div>
     </div>
