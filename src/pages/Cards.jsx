@@ -103,7 +103,7 @@ const Cards = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://10.0.0.240:3001/api/cards/transaction?fkTarjeta=${CardData.idCard}`
+        `http://maptest.ddns.net:3001/api/cards/transaction?fkTarjeta=${CardData.idCard}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -119,7 +119,7 @@ const Cards = () => {
     try {
       setBalance(0);
       const response = await fetch(
-        `http://10.0.0.240:3001/api/cards/card?cod=${params}`
+        `http://maptest.ddns.net:3001/api/cards/card?cod=${params}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -144,7 +144,7 @@ const Cards = () => {
   const InsertTransaction = async () => {
     try {
       const response = await fetch(
-        `http://10.0.0.240:3001/api/cards/transaction`,
+        `http://maptest.ddns.net:3001/api/cards/transaction`,
         {
           method: "POST",
           headers: {
