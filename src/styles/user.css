@@ -1,0 +1,165 @@
+.user-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 25px;
+  padding: 15px;
+}
+
+.user-top-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 2;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.user-information-container {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+}
+
+.user-search-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.lbl-search {
+  font-size: 2rem;
+}
+.txt-search {
+  font-size: 1.2rem;
+  height: 45px;
+  width: 350px;
+  border-radius: 5px;
+  border: 2px black solid;
+}
+
+.btn-search {
+  padding: 5px;
+  font-size: 1.2rem;
+  height: 45px;
+  width: 150px;
+  color: white;
+  background-color: green;
+  border-radius: 5px;
+  border: 2px black solid;
+}
+
+.btn-search-cancel {
+  padding: 5px;
+  font-size: 1.2rem;
+  height: 45px;
+  width: 150px;
+  color: white;
+  background-color: red;
+  border-radius: 5px;
+  border: 2px black solid;
+}
+
+.user-data-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 3;
+  border: 2px black solid;
+}
+
+.user-action-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn-action-new {
+  flex: 2;
+  border-radius: 15px;
+  font-size: 2rem;
+  color: white;
+  background-color: dodgerblue;
+  border: 1px black solid;
+}
+
+.btn-action-update {
+  flex: 2;
+  border-radius: 15px;
+  font-size: 2rem;
+  color: white;
+  background-color: green;
+  border: 1px black solid;
+}
+
+
+.btn-table-select {
+  flex: 1;
+  border-radius: 15px;
+  font-size: 1rem;
+  height: 35px;
+  width: 100px;
+  color: white;
+  background-color: dodgerblue;
+  margin-right: 15px;
+  border: 0;
+}
+
+.btn-table-accept {
+  flex: 1;
+  border-radius: 15px;
+  font-size: 1rem;
+  height: 35px;
+  width: 100px;
+  color: white;
+  background-color: green;
+  margin-right: 15px;
+  border: 0;
+}
+
+.btn-table-decline {
+  flex: 1;
+  flex: 1;
+  border-radius: 15px;
+  font-size: 1rem;
+  color: white;
+  height: 35px;
+  width: 100px;
+  background-color: red;
+  border: 0;
+}
+
+.user-list-container {
+  flex: 3;
+  border: 2px black solid;
+  background: white;
+}
+
+.user-modal-information-container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.user-modal-search-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  flex: 2;
+}
+
+.user-modal-action-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+}

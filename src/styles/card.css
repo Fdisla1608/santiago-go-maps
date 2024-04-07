@@ -1,0 +1,190 @@
+.card-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 25px;
+  padding: 15px;
+}
+
+.card-top-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 2;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.card-information-container {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+
+}
+
+.card-search-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.lbl-search {
+  font-size: 2rem;
+}
+.txt-search {
+  font-size: 1.2rem;
+  height: 45px;
+  width: 350px;
+  border-radius: 5px;
+  border: 2px black solid;
+}
+
+.btn-search {
+  padding: 5px;
+  font-size: 1.2rem;
+  height: 45px;
+  width: 150px;
+  color: white;
+  background-color: green;
+  border-radius: 5px;
+  border: 2px black solid;
+}
+
+.btn-search-ced {
+  padding: 5px;
+  font-size: 1.2rem;
+  height: 45px;
+  width: 150px;
+  color: white;
+  background-color: red;
+  border-radius: 5px;
+  border: 2px black solid;
+}
+
+.card-data-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 15px;
+  flex: 3;
+  border: 2px black solid;
+}
+
+.card-data-container-box {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.card-data-container-label {
+  font-size: 1.8rem;
+}
+.card-data-container-text {
+  font-size: 1.5rem;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 5px;
+  border: 1px gray solid;
+}
+
+.card-action-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.txt-amount {
+  flex: 2;
+  text-align: center;
+  font-size: 2.5rem;
+  border-radius: 15px;
+  border: 1px black solid;
+}
+.btn-action-accept {
+  flex: 1;
+  border-radius: 15px;
+  font-size: 2rem;
+  color: white;
+  background-color: green;
+  border: 2px black solid;
+}
+
+.btn-action-decline {
+  flex: 1;
+  border-radius: 15px;
+  font-size: 2rem;
+  color: white;
+  background-color: red;
+  border: 2px black solid;
+}
+
+.card-history-container {
+  flex: 3;
+  border: 2px black solid;
+  color: black;
+}
+
+.card-history-table {
+  width: 100%;
+  text-align: center;
+}
+
+.card-history-table-head {
+  width: 100%;
+}
+
+.card-history-table-body {
+  width: 100%;
+  border: 1px red solid;
+}
+
+.modal-search-screen {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(48, 48, 48, 0.829);
+}
+
+.modal-search-screen.tohide {
+  display: none;
+}
+
+.modal-search-container {
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background-color: white;
+  border: 2px black solid;
+}
+
+.modal-action-container {
+  display: flex;
+  justify-content: end;
+}
+
+.modal-close-button {
+  font-size: 1.5rem;
+  background-color: white;
+  border: 0;
+}
+
+.modal-top-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 1;
+  justify-content: space-between;
+  gap: 25px;
+}

@@ -1,115 +1,16 @@
 .container {
-  position: absolute;
-  top: 0;
-  left: 0;
   display: flex;
+  block-size: 100%;
+  inline-size: 100%;
   margin: 0px;
 }
 
-.floating-button-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1vh;
-  width: 7vw;
-  height: 4vh;
-}
-
-.floating-button-open{
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-  height: 100%;
-  border: 0px;
-  font-size: 5vh;
-  color: white;
-  border-radius: 0px;
-  background-color:  rgba(143, 133, 133, 0.503);
-  border-radius: 10px;
-  z-index: 2;
-}
-
-
-.floating-button-closed{
-  margin: 0px;
-  z-index: -1;
-}
-
-.navbar-open {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 25vw;
-  background-color: rgba(173, 174, 173, 0.863);
-  z-index: 1;
-  border-radius: 10px;
-}
-
-.navbar-title-container{
-  position: relative;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-
-.navbar-title{
-  font-size: 3.5vh;
-}
-
-.navbar-button-close{
-  font-size: 3.5vh;
-  background-color: rgba(43, 220, 55, 0);
-  color: aliceblue;
-  border-radius: 10px;
-  height: 7vh;
-  width: 0.5vh;
-  border: 0px;
-}
 
 .map-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
+  block-size: 100%;
+  inline-size: 100%;
   margin: 0px;
   z-index: 0;
-}
-
-.user-name{
-  font-size: 3.5vh;
-  text-align: center;
-  font-weight: bold;
-}
-
-.cards{
-  text-align: center;
-  font-weight: bold;
-  font-size: 3.5vh;
-}
-
-.card-container{
-  background-color: whitesmoke;
-  margin: 5px;
-  padding-left: 5px;
-  border-radius: 10px;
-}
-
-.card-title{
-  text-align: center;
-  font-size: 2.5vh;
-  font-weight: bold;
-}
-
-.card-cod{
-  margin: 0px;
-  font-size: 2.5vh;
-}
-
-.card-balance{
-  margin: 0px;
-  font-size: 2.5vh;
 }
 
 .marker-position{

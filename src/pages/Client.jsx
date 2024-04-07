@@ -1,32 +1,150 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import GoogleMapReact from "google-map-react";
-
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  Polyline,
+  InfoWindow,
+} from "@react-google-maps/api";
+import axios from "axios";
+import mqtt from "mqtt";
 import "../styles/client.css";
-import MyPositionMarker from "../components/MyPositionMarker";
+import car from "../images/car-gray.png";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const libraries = ["places"];
+const mapContainerStyle = {
+  width: "100%",
+  height: "100%",
+};
+const defaultCenter = {
+  lat: 19.441261067653702,
+  lng: -70.68447494396473,
+};
 
-const Client = () => {
-  const location = useLocation();
-  const [user, setUser] = useState();
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const [lat, setLat] = useState(19.441907556432835);
-  const [lgn, setLgn] = useState(-70.6815231746255);
+const protocol = "ws";
+const host = "maptest.ddns.net";
+const port = "8083";
+const path = "/mqtt";
+const clientId = `mqtt_${Math.random().toString(16).slice(3)}`;
+const topic = "mqtt/map";
 
-  const CloseNavbar = () => {
-    setNavbarOpen(!navbarOpen);
+const connectUrl = `${protocol}://${host}:${port}${path}`;
+
+const App = () => {
+  const [trucks, setTrucks] = useState({});
+  const [rutas, setRutas] = useState([]);
+  const [client, setClient] = useState(null);
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: "AIzaSyARFCccvBa5znIAbFaMotUz6MfPh_doCrg",
+    libraries,
+  });
+
+  const mqttConnect = () => {
+    const newClient = mqtt.connect(connectUrl, {
+      clientId,
+      clean: true,
+      connectTimeout: 4000,
+      username: "emqx",
+      password: "public",
+      reconnectPeriod: 1000,
+    });
+
+    newClient.on("connect", () => {
+      console.log("MQTT connected successfully");
+      newClient.subscribe(topic, (err) => {
+        if (err) console.error("Error subscribing to MQTT topic:", err);
+      });
+    });
+
+    newClient.on("message", async (topic, message) => {
+      const newTruck = JSON.parse(message.toString());
+
+      await setTrucks((prevTrucks) => {
+        const updatedTrucks = { ...prevTrucks };
+        if (newTruck.ficha in updatedTrucks) {
+          updatedTrucks[newTruck.ficha] = newTruck;
+        } else {
+          updatedTrucks[newTruck.ficha] = newTruck;
+        }
+        return updatedTrucks;
+      });
+    });
+
+    newClient.on("error", (err) => {
+      console.error("MQTT connection error:", err);
+      newClient.end();
+    });
+
+    setClient(newClient);
+  };
+
+  const showTrucks = () => {
+    return Object.values(trucks).map((truck, index) => {
+      // Calculate bearing between current location and truck's position
+      let bearing = 0; // Default to North
+      if (currentLocation) {
+        const lat1 = currentLocation.lat;
+        const lon1 = currentLocation.lng;
+        const lat2 = truck.position.latitude / 10000000;
+        const lon2 = truck.position.longitude / 10000000;
+        bearing = calculateInitialCompassBearing(lat1, lon1, lat2, lon2);
+      }
+
+      return (
+        <Marker
+          key={index}
+          position={{
+            lat: truck.position.latitude / 10000000,
+            lng: truck.position.longitude / 10000000,
+          }}
+          icon={{
+            url: car,
+            scaledSize: new window.google.maps.Size(80, 45), // Tamaño del icono
+            rotation: bearing, // Rotate the marker based on bearing
+          }}
+        />
+      );
+    });
+  };
+
+  const calculateInitialCompassBearing = (lat1, lon1, lat2, lon2) => {
+    const deg2rad = (degrees) => {
+      return degrees * (Math.PI / 180);
+    };
+
+    const rad2deg = (radians) => {
+      return (radians * 180) / Math.PI;
+    };
+
+    lat1 = deg2rad(lat1);
+    lon1 = deg2rad(lon1);
+    lat2 = deg2rad(lat2);
+    lon2 = deg2rad(lon2);
+
+    const dLon = lon2 - lon1;
+
+    const y = Math.sin(dLon) * Math.cos(lat2);
+    const x =
+      Math.cos(lat1) * Math.sin(lat2) -
+      Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+
+    let initialBearing = Math.atan2(y, x);
+    initialBearing = rad2deg(initialBearing);
+    initialBearing = (initialBearing + 360) % 360;
+
+    return initialBearing;
   };
 
   useEffect(() => {
-    const { state } = location;
+    mqttConnect();
+
     const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
-            setLat(latitude);
-            setLgn(longitude);
+            setCurrentLocation({ lat: latitude, lng: longitude });
           },
           (error) => {
             console.error("Error getting location:", error.message);
@@ -36,54 +154,55 @@ const Client = () => {
         console.error("Geolocation is not supported by this browser.");
       }
     };
-    setUser(state);
+
+    axios
+      .get(`http://maptest.ddns.net:3001/api/maps/rutax`)
+      .then((res) => {
+        console.log(res.data);
+        setRutas(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching routes data:", error);
+      });
+
     getLocation();
-  }, [location, lat, lgn]);
+
+    return () => {
+      if (client) {
+        client.end();
+      }
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (loadError) {
+    return <div>Error loading maps</div>;
+  }
+
+  if (!isLoaded) {
+    return <div>Loading maps</div>;
+  }
 
   return (
-    <div className="container">
-      <button
-        className={
-          navbarOpen ? "floating-button-closed" : "floating-button-open"
-        }
-        onClick={CloseNavbar}
+    <div className="map-container">
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={18}
+        center={currentLocation || defaultCenter}
       >
-        ≡
-      </button>
+        {trucks && showTrucks()}
 
-      <div className={navbarOpen ? "navbar-open" : "navbar-closed"}>
-        <div className="navbar-title-container">
-          <p className="navbar-title">SantiaGO!</p>
-          <button className="navbar-button-close" onClick={CloseNavbar}>
-            x
-          </button>
-        </div>
-        <p className="user-name">
-          {user && user.name} {user && user.lastName}
-        </p>
-        {user?.cards?.map((card, i) => (
-          <div key={i} className="card-container">
-            <p className="card-title">Tarjeta # {i + 1}</p>
-            <p className="card-cod">Cod: {card.cod}</p>
-            <p className="card-balance">Balance: {card.balance}</p>
-          </div>
+        {rutas.map((ruta, index) => (
+          <Polyline
+            key={index}
+            path={ruta.coordinates}
+            strokeColor={ruta.colorRutas}
+            strokeOpacity={0.8}
+            strokeWeight={2}
+          />
         ))}
-      </div>
-      <div className="map-container">
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyARFCccvBa5znIAbFaMotUz6MfPh_doCrg" }}
-          center={{
-            lat: lat,
-            lng: lgn,
-          }}
-          defaultZoom={19}
-        >
-          <MyPositionMarker lat={19.441907556432835} lng={-70.6815231746255} text={"^"} />
-
-        </GoogleMapReact>
-      </div>
+      </GoogleMap>
     </div>
   );
 };
 
-export default Client;
+export default App;

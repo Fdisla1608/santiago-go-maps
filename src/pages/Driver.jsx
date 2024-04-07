@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Driver = () => {
   return (
-    <div>Driver</div>
-  )
-}
+    <div>
+      <h1>Pagina No Disponible</h1>
+    </div>
+  );
+};
 
-export default Driver
+export default Driver;
