@@ -86,8 +86,8 @@ const App = () => {
       if (currentLocation) {
         const lat1 = currentLocation.lat;
         const lon1 = currentLocation.lng;
-        const lat2 = truck.position.latitude / 10000000;
-        const lon2 = truck.position.longitude / 10000000;
+        const lat2 = truck.position.latitude;
+        const lon2 = truck.position.longitude;
         bearing = calculateInitialCompassBearing(lat1, lon1, lat2, lon2);
       }
 
@@ -95,8 +95,8 @@ const App = () => {
         <Marker
           key={index}
           position={{
-            lat: truck.position.latitude / 10000000,
-            lng: truck.position.longitude / 10000000,
+            lat: truck.position.latitude,
+            lng: truck.position.longitude,
           }}
           icon={{
             url: car,
