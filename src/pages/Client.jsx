@@ -88,7 +88,7 @@ const App = () => {
         const lon1 = currentLocation.lng;
         const lat2 = truck.position.latitude;
         const lon2 = truck.position.longitude;
-        bearing = calculateInitialCompassBearing(lat1, lon1, lat2, lon2);
+        bearing = calculateInitialCompassBearing(lat1, lon1, lat2, lon2, 105);
       }
 
       return (
@@ -108,7 +108,13 @@ const App = () => {
     });
   };
 
-  const calculateInitialCompassBearing = (lat1, lon1, lat2, lon2) => {
+  const calculateInitialCompassBearing = (
+    lat1,
+    lon1,
+    lat2,
+    lon2,
+    offset = 0
+  ) => {
     const deg2rad = (degrees) => {
       return degrees * (Math.PI / 180);
     };
@@ -131,7 +137,7 @@ const App = () => {
 
     let initialBearing = Math.atan2(y, x);
     initialBearing = rad2deg(initialBearing);
-    initialBearing = (initialBearing + 360) % 360;
+    initialBearing = (initialBearing + 360 + offset) % 360;
 
     return initialBearing;
   };
