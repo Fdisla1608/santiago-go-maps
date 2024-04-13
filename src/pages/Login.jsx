@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 
 async function loginUser(credentials) {
-  return fetch("http://localhost:3001/admin/login", {
+  return fetch("http://maptest.ddns.net:3001/admin/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
