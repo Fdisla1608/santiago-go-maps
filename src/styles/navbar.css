@@ -1,10 +1,27 @@
-.navbar-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    color: aliceblue;
-    font-family: monospace;
-    font-size: 2.5rem;
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.logo {
+  margin-left: 3vh;
+  color: aliceblue;
+  font-family: monospace;
+  font-size: 2.5rem;
+}
+
+.btn-logout {
+  width: 150px;
+  height: 60px;
+  font-size: 1.2rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px grey solid;
+}
+
+.btn-logout:hover {
+  background-color: rgb(165, 8, 47);
 }

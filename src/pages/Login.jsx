@@ -1,55 +1,70 @@
 import React from "react";
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 
-const Login = () => {
+async function loginUser(credentials) {
+  return fetch("http://localhost:3001/admin/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json());
+}
+
+export default function Login({ setToken }) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
-  const navigate = useNavigate();
 
-  const LoginEvent = () => {
-    navigate("client", {
-      state: {
-        userId: 1,
-        name: "Fernando",
-        lastName: "Disla",
-        cards: [
-          { cod: "1001", balance: 100 },
-          { cod: "1002", balance: 50 },
-        ],
-      },
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = await loginUser({
+      userName: username,
+      userPassword: password,
     });
+    setToken(token);
   };
 
   return (
-    <div>
-      <div className="login-title">Iniciar Sesion</div>
-      <div className="login-frame">
-        <div className="username-frame">
-          <label htmlFor="user-name">Usuario: </label>
-          <input
-            type="text"
-            id="user-name"
-            onChange={(e) => setUserName(e.target.value)}
-          />
-        </div>
-        <div className="password-frame">
-          <label htmlFor="user-name">Password: </label>
-          <input
-            type="password"
-            id="user-name"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="button-frame">
-          <button className="btn-login" onClick={LoginEvent}>
-            Iniciar Sesion
-          </button>
+    <div className="login-page">
+      <div className="login-container">
+        <div className="login-title">Inicio de Sesion</div>
+        <div className="login-frame">
+          <div className="form-frame">
+            <label htmlFor="user-name" className="label-field">
+              Usuario:{" "}
+            </label>
+            <input
+              type="text"
+              id="user-name"
+              onChange={(e) => setUserName(e.target.value)}
+              className="text-field"
+            />
+          </div>
+          <div className="form-frame">
+            <label htmlFor="user-name" className="label-field">
+              Password:{" "}
+            </label>
+            <input
+              type="password"
+              id="user-name"
+              onChange={(e) => setPassword(e.target.value)}
+              className="text-field"
+            />
+          </div>
+          <div className="button-frame">
+            <button className="btn-login" onClick={handleSubmit}>
+              Iniciar Sesion
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default Login;
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};
