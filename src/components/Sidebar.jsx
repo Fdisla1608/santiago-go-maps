@@ -8,7 +8,7 @@ const Sidebar = () => {
     <div className="sidebar-container">
       <div className="sidebar-title">Santiago</div>
       <div className="navigation-container">
-        <Link to="/Map" className="navigation-item">
+        <Link to="/" className="navigation-item">
           Mapa
         </Link>
         <Link to="/Cards" className="navigation-item">
