@@ -49,7 +49,7 @@ export default function Login({ setToken }) {
             </label>
             <input
               type="password"
-              id="user-name"
+              id="user-password"
               onChange={(e) => setPassword(e.target.value)}
               className="text-field"
             />
