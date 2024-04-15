@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 
+const server = "maptest.ddns.net"
+
 async function loginUser(credentials) {
-  return fetch("http://maptest.ddns.net:3001/admin/login", {
+  return fetch(`http://${server}:3001/api/admin/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

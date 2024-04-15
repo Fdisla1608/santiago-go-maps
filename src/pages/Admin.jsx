@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/user.css";
 
-const Driver = () => {
+const Admin = () => {
   const [data, setData] = useState([]);
 
   const [driverData, setDriverData] = useState({
@@ -12,6 +12,7 @@ const Driver = () => {
     userPassword: "",
     fechaNacimiento: new Date(),
     telefono: "",
+    tipoSesion: 1,
   });
 
   useEffect(() => {
@@ -45,14 +46,13 @@ const Driver = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://${server}:3001/api/driver?param=${""}`
+        `http://${server}:3001/api/admin?param=${""}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const jsonData = await response.json();
       setData(jsonData.results);
-      console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -60,50 +60,49 @@ const Driver = () => {
 
   async function SelectUser(id) {
     let driver = data.find((us) => us.id === id);
-    console.log(driver);
     driver.userPassword = "";
     setDriverData(driver);
   }
 
   async function UpdateDriver() {
     let method;
-    console.log(driverData.id);
-    if (driverData.id > 0) {
-      method = "PUT";
-    } else {
-      method = "POST";
-    }
-
-    try {
-      const response = await fetch(
-        `http://${server}:3001/api/driver?id=${driverData.id}`,
-        {
-          method: method,
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(driverData),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+    if (driverData.userPassword.length > 0 && driverData.userName.length > 0) {
+      if (driverData.id > 0) {
+        method = "PUT";
+      } else {
+        method = "POST";
       }
-      const jsonData = await response.json();
-      console.log(jsonData);
-      newRegister();
-    } catch (error) {
-      console.error("Error fetching data:", error);
+
+      try {
+        const response = await fetch(
+          `http://${server}:3001/api/admin?id=${driverData.id}`,
+          {
+            method: method,
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(driverData),
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const jsonData = await response.json();
+        console.log(jsonData);
+        newRegister();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    } else {
+      alert("Ingrese los datos correctamente");
     }
   }
 
   async function DeleteDriver(id) {
     try {
-      const response = await fetch(
-        `http://${server}:3001/api/driver?id=${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`http://${server}:3001/api/admin?id=${id}`, {
+        method: "DELETE",
+      });
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -123,6 +122,7 @@ const Driver = () => {
       userPassword: "",
       telefono: "",
       fechaNacimiento: "",
+      tipoSesion: 1,
     });
   };
 
@@ -233,6 +233,21 @@ const Driver = () => {
                   onChange={handleChange}
                 />
               </div>
+
+              <div className="card-data-container-box">
+                <label htmlFor="userName" className="card-data-container-label">
+                  Tipo Sesion:
+                </label>
+                <select
+                  name="tipoSesion"
+                  className="card-data-container-text"
+                  value={driverData.tipoSesion}
+                  onChange={handleChange}
+                >
+                  <option value={1}>Administrador</option>
+                  <option value={2}>Operario</option>
+                </select>
+              </div>
             </div>
           </div>
           <div className="user-action-container">
@@ -290,4 +305,4 @@ const Driver = () => {
   );
 };
 
-export default Driver;
+export default Admin;

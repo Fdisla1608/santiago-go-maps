@@ -66,6 +66,7 @@
   flex-wrap: wrap;
   flex: 3;
   border: 2px black solid;
+  padding: 25px;
 }
 
 .user-action-container {

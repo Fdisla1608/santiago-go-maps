@@ -17,8 +17,17 @@ const Sidebar = () => {
         <Link to="/User" className="navigation-item">
           Usuario
         </Link>
+        <Link to="/Admin" className="navigation-item">
+          Admin
+        </Link>
+        <Link to="/Vehicle" className="navigation-item">
+          Vehiculos
+        </Link>
         <Link to="/Driver" className="navigation-item">
           Chofer
+        </Link>
+        <Link to="/Routes" className="navigation-item">
+          Rutas
         </Link>
       </div>
     </div>
