@@ -55,14 +55,35 @@
 }
 
 .coordinate-table {
-  height: 250px;
-  border: 1px black solid;
+  border: 1px solid black;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-thead{
+.coordinate-table thead {
+  font-size: 1.2rem;
   width: 100%;
-  border: 1px red solid;
+  margin: 15px 0;
 }
+
+.coordinate-table tbody {
+  height: 180px;
+  overflow-y: auto;
+  display: block;
+  width: 100%;
+}
+
+.coordinate-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.coordinate-table th, .coordinate-table td {
+  padding: 8px;
+  text-align: left;
+}
+
 
 .coordinate-input {
   display: flex;
@@ -81,6 +102,7 @@ thead{
 .coordinate-label {
   font-size: 1.2rem;
 }
+
 
 .btn-save {
   background-color: rgb(31, 148, 27);

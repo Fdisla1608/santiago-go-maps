@@ -97,7 +97,7 @@ const App = () => {
     };
 
     axios
-      .get(`http://maptest.ddns.net:3001/api/maps/rutax`)
+      .get(`http://maptest.ddns.net:3005/api/maps/rutax`)
       .then((res) => {
         setRutas(res.data);
       })
