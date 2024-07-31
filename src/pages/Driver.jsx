@@ -25,7 +25,7 @@ const Driver = () => {
     const { value } = event.target;
     try {
       const response = await fetch(
-        `http://${server}:3005/api/driver?param=${value}`
+        `http://${server}:3001/api/driver?param=${value}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -45,7 +45,7 @@ const Driver = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://${server}:3005/api/driver?param=${""}`
+        `http://${server}:3001/api/driver?param=${""}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -76,7 +76,7 @@ const Driver = () => {
 
     try {
       const response = await fetch(
-        `http://${server}:3005/api/driver?id=${driverData.id}`,
+        `http://${server}:3001/api/driver?id=${driverData.id}`,
         {
           method: method,
           headers: {
@@ -99,7 +99,7 @@ const Driver = () => {
   async function DeleteDriver(id) {
     try {
       const response = await fetch(
-        `http://${server}:3005/api/driver?id=${id}`,
+        `http://${server}:3001/api/driver?id=${id}`,
         {
           method: "DELETE",
         }

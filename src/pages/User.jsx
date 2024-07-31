@@ -38,7 +38,7 @@ const User = () => {
     const { value } = event.target;
     try {
       const response = await fetch(
-        `http://maptest.ddns.net:3005/api/user?param=${value}`
+        `http://maptest.ddns.net:3001/api/user?param=${value}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -58,7 +58,7 @@ const User = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://maptest.ddns.net:3005/api/user?param=${""}`
+        `http://maptest.ddns.net:3001/api/user?param=${""}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -137,7 +137,7 @@ const User = () => {
     setUserData(user);
     try {
       const response = await fetch(
-        `http://maptest.ddns.net:3005/api/cards?userId=${user.id}`
+        `http://maptest.ddns.net:3001/api/cards?userId=${user.id}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -168,7 +168,7 @@ const User = () => {
 
     try {
       const response = await fetch(
-        `http://maptest.ddns.net:3005/api/user?id=${userData.id}`,
+        `http://maptest.ddns.net:3001/api/user?id=${userData.id}`,
         {
           method: method,
           headers: {
@@ -191,7 +191,7 @@ const User = () => {
   async function DeleteCard(id) {
     try {
       const response = await fetch(
-        `http://maptest.ddns.net:3005/api/cards?id=${id}`,
+        `http://maptest.ddns.net:3001/api/cards?id=${id}`,
         {
           method: "DELETE",
         }
@@ -210,7 +210,7 @@ const User = () => {
 
   async function DeleteUser(id) {
     try {
-      const response = await fetch(`http://maptest.ddns.net:3005/api/user?id=${id}`, {
+      const response = await fetch(`http://maptest.ddns.net:3001/api/user?id=${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -230,7 +230,7 @@ const User = () => {
         throw new Error("Tarjeta Invalida");
       }
       const response = await fetch(
-        `http://maptest.ddns.net:3005/api/cards?id=${userData.id}`,
+        `http://maptest.ddns.net:3001/api/cards?id=${userData.id}`,
         {
           method: "POST",
           headers: {

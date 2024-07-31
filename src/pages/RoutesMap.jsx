@@ -106,7 +106,7 @@ const RoutesMap = () => {
       method = "PUT";
     }
     try {
-      const response = await fetch(`http://maptest.ddns.net:3005/api/routes?id=${routesData.id}`, {
+      const response = await fetch(`http://maptest.ddns.net:3001/api/routes?id=${routesData.id}`, {
         method: method,
         headers: {
           "Content-Type": "application/json",
@@ -132,7 +132,7 @@ const RoutesMap = () => {
   async function DeleteRoute(id) {
     if (routesData.id > 0) {
       try {
-        const response = await fetch(`http://maptest.ddns.net:3005/api/routes?id=${routesData.id}`, {
+        const response = await fetch(`http://maptest.ddns.net:3001/api/routes?id=${routesData.id}`, {
           method: "DELETE",
         });
         if (!response.ok) {
@@ -179,7 +179,7 @@ const RoutesMap = () => {
     };
 
     axios
-      .get(`http://${host}:3005/api/routes/`)
+      .get(`http://${host}:3001/api/routes/`)
       .then((res) => {
         setRutas(res.data.results);
       })

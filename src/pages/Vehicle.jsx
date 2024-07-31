@@ -30,7 +30,7 @@ const Vehicle = () => {
     const { value } = event.target;
     try {
       const response = await fetch(
-        `http://${server}:3005/api/vehicle?param=${value}`
+        `http://${server}:3001/api/vehicle?param=${value}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -50,7 +50,7 @@ const Vehicle = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://${server}:3005/api/vehicle?param=${""}`
+        `http://${server}:3001/api/vehicle?param=${""}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -66,7 +66,7 @@ const Vehicle = () => {
   const fetchDrivers = async () => {
     try {
       const response = await fetch(
-        `http://${server}:3005/api/driver?param=${""}`
+        `http://${server}:3001/api/driver?param=${""}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -80,7 +80,7 @@ const Vehicle = () => {
 
   const fetchRoutes = async () => {
     try {
-      const response = await fetch(`http://${server}:3005/api/routes/`);
+      const response = await fetch(`http://${server}:3001/api/routes/`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -108,7 +108,7 @@ const Vehicle = () => {
 
     try {
       const response = await fetch(
-        `http://${server}:3005/api/vehicle?id=${vehicleData.id}`,
+        `http://${server}:3001/api/vehicle?id=${vehicleData.id}`,
         {
           method: method,
           headers: {
@@ -131,7 +131,7 @@ const Vehicle = () => {
   async function DeleteVehicle(id) {
     try {
       const response = await fetch(
-        `http://${server}:3005/api/vehicle?id=${id}`,
+        `http://${server}:3001/api/vehicle?id=${id}`,
         {
           method: "DELETE",
         }
