@@ -3,7 +3,6 @@ import { useState } from "react";
 import Client from "./pages/Client.jsx";
 import Driver from "./pages/Driver.jsx";
 import Login from "./pages/Login.jsx";
-import "./styles/app.css";
 import Sidebar from "./components/Sidebar.jsx";
 import Cards from "./pages/Cards.jsx";
 import Navbar from "./components/Navbar.jsx";
@@ -11,6 +10,8 @@ import User from "./pages/User.jsx";
 import Admin from "./pages/Admin.jsx";
 import RoutesMap from "./pages/RoutesMap.jsx";
 import Vehicle from "./pages/Vehicle.jsx";
+
+import "./styles/app.css";
 
 function App() {
   const [token, setToken] = useState(sessionStorage.getItem("token"));

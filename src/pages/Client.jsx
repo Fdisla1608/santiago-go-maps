@@ -9,7 +9,7 @@ const libraries = ["places"];
 const mapContainerStyle = { width: "100%", height: "100%" };
 const defaultCenter = { lat: 19.441261067653702, lng: -70.68447494396473 };
 const protocol = "ws";
-const host = "maptest.ddns.net";
+const host = "swift-agro.ddns.net";
 const port = "8083";
 const path = "/mqtt";
 const clientId = `mqtt_${Math.random().toString(16).slice(3)}`;
@@ -97,7 +97,7 @@ const App = () => {
     };
 
     axios
-      .get(`http://maptest.ddns.net:3001/api/maps/rutax`) 
+      .get(`http://swift-agro.ddns.net:3001/api/maps/rutax`) 
       .then((res) => {
         setRutas(res.data);
       })

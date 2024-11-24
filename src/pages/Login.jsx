@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 
-const server = "maptest.ddns.net"
+const server = "swift-agro.ddns.net"
 
 async function loginUser(credentials) {
   return fetch(`http://${server}:3001/api/admin/login`, {

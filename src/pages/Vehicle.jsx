@@ -24,7 +24,7 @@ const Vehicle = () => {
     fetchRoutes();
   }, []);
 
-  const server = "maptest.ddns.net";
+  const server = "swift-agro.ddns.net";
 
   const handleSearch = async (event) => {
     const { value } = event.target;
